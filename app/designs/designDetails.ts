@@ -15,17 +15,17 @@ export type DesignProps = {
 
 export const designDetails = [
   {
-    name: "Graphic Designer",
+    name: "Graphic Designs",
     image: require("../../public/graphic designer.jpg"),
     url: "https:google.com",
   },
   {
-    name: "UI/UX Designer",
+    name: "UI/UX Designs",
     image: require("../../public/uiux.jpg"),
     url: "https:google.com",
   },
   {
-    name: "Visual Designer",
+    name: "Visual Designs",
     image: require("../../public/visual designer.jpg"),
     url: "https:google.com",
   }
