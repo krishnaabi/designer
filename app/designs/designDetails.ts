@@ -17,16 +17,16 @@ export const designDetails = [
   {
     name: "Graphic Designs",
     image: require("../../public/graphic designer.jpg"),
-    url: "https:google.com",
+    url: "https://resolute-theater-bd2.notion.site/Designs-Graphic-UI-UX-1b9a8cfceff181f9a5d1e6953ebb88e7?source=copy_link",
   },
   {
     name: "UI/UX Designs",
     image: require("../../public/uiux.jpg"),
-    url: "https:google.com",
+    url: "https://resolute-theater-bd2.notion.site/Designs-Graphic-UI-UX-1b9a8cfceff181f9a5d1e6953ebb88e7?source=copy_link",
   },
   {
     name: "Visual Designs",
     image: require("../../public/visual designer.jpg"),
-    url: "https:google.com",
+    url: "https://resolute-theater-bd2.notion.site/Designs-Graphic-UI-UX-1b9a8cfceff181f9a5d1e6953ebb88e7?source=copy_link",
   }
 ];
