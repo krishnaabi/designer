@@ -16,7 +16,7 @@ export const devProjects = [
     description:
       "Hanioo is a user-friendly platform connecting interpreters and clients for seamless communication, transparent booking, and secure payment management..",
     technologies: ["Figma", "UI/UX Design", "Julius AI", "Mira"],
-    figma: "https://www.figma.com/design/GGLyNXbkrHmvXWZD4ks84u/Case-Study-Template---Creative-Ferry--Community-?node-id=282-58&t=kfPGs3Q4J4XZLMzl-1",
+    figma: "https://www.figma.com/proto/GGLyNXbkrHmvXWZD4ks84u/Case-Study-Template---Creative-Ferry--Community-?node-id=282-79&p=f&t=DIvFzj94SlEW0MeU-1&scaling=min-zoom&content-scaling=fixed&page-id=282%3A58",
     image: require(".//../../public/0.jpg"),
     available: true,
     demo: "",
