@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { defaultSiteContent } from "../lib/default-site-content";
 import { BlogItem, DesignItem, SiteContent, SongItem, WorkItem } from "../lib/site-content";
 
@@ -15,10 +15,13 @@ const AdminPage = () => {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
 
-  const authHeaders = useMemo(
-    () => (adminPassword ? { "x-admin-password": adminPassword } : {}),
-    [adminPassword],
-  );
+  const getAuthHeaders = (): Record<string, string> => {
+    const headers: Record<string, string> = {};
+    if (adminPassword.trim()) {
+      headers["x-admin-password"] = adminPassword.trim();
+    }
+    return headers;
+  };
 
   const showMessage = (value: string) => {
     setMessage(value);
@@ -32,7 +35,7 @@ const AdminPage = () => {
     try {
       const response = await fetch("/api/admin/content", {
         method: "GET",
-        headers: authHeaders,
+        headers: getAuthHeaders(),
       });
 
       if (!response.ok) {
@@ -58,7 +61,7 @@ const AdminPage = () => {
         method: "PUT",
         headers: {
           "content-type": "application/json",
-          ...authHeaders,
+          ...getAuthHeaders(),
         },
         body: JSON.stringify(content),
       });
@@ -86,7 +89,7 @@ const AdminPage = () => {
     const response = await fetch("/api/admin/upload", {
       method: "POST",
       body: formData,
-      headers: authHeaders,
+      headers: getAuthHeaders(),
     });
 
     if (!response.ok) {
