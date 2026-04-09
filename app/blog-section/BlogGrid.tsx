@@ -1,11 +1,18 @@
 import BlogCard from "./BlogCard";
-import { blogDetails } from "./blogDetails";
 import AnimatedWords2 from "../animations/AnimatedWords2";
 import { monaSans } from "../fonts/monaSans";
 import AnimatedBody from "../animations/AnimatedBody";
 import { motion } from "framer-motion";
+import { BlogItem } from "../lib/site-content";
 
-const Blog = () => {
+type BlogProps = {
+  blogs: BlogItem[];
+  linkedinUrl: string;
+};
+
+const Blog = ({ blogs, linkedinUrl }: BlogProps) => {
+  const activeBlogs = blogs.filter((blog) => blog.isActive);
+
   return (
     <section className="z-10 flex w-full flex-col items-center justify-center overflow-hidden bg-[#0E1016] bg-cover bg-center pt-20 md:pb-16 lg:pb-32">
       <div
@@ -22,14 +29,14 @@ const Blog = () => {
         />
       </div>
       <div className="lg:w- [850px] grid w-[90%] max-w-[1200px] grid-cols-1 grid-rows-3 place-content-center place-items-center gap-x-6 gap-y-6 sm:grid-cols-2 sm:grid-rows-2 md:grid-cols-3 md:grid-rows-1">
-        {blogDetails.map((blog, index) => {
+        {activeBlogs.map((blog, index) => {
           return (
             <BlogCard
-              key={index}
+              key={blog.id}
               title={blog.title}
-              image={blog.image}
+              image={blog.imageUrl}
               url={blog.url}
-              date="Explore"
+              date={blog.dateLabel}
               available={blog.available}
               index={index}
             />
@@ -52,7 +59,7 @@ const Blog = () => {
           amount: "some",
           once: true,
         }}
-        href="https://www.linkedin.com/in/abi-krishna-15abi/"
+        href={linkedinUrl}
         target="_blank"
         className="mt-16 flex items-center justify-center rounded-lg bg-white"
       >

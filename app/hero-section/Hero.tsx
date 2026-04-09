@@ -4,9 +4,13 @@ import { monaSans } from "../fonts/monaSans";
 import { motion } from "framer-motion";
 import { imageAnimation, bodyAnimation } from "../animations/animations";
 import AnimatedWords from "../animations/AnimatedWords";
-import profile from "../../public/Abikrishna T.jpeg";
+import { SiteSettings } from "../lib/site-content";
 
-const Hero = () => {
+type HeroProps = {
+  settings: SiteSettings;
+};
+
+const Hero = ({ settings }: HeroProps) => {
   return (
     <motion.section
       className="relative z-10 flex h-[85vh] w-full items-stretch justify-center bg-[url('.//../public/hero.jpg')] bg-cover bg-center py-0 sm:h-[90vh]  md:h-[100vh] 3xl:h-[85vh]"
@@ -19,7 +23,7 @@ const Hero = () => {
       <div className="absolute top-10 flex justify-between sm:w-[90%] lg:max-w-[1440px]">
         <div>
           <Link
-            href="mailto://abikrishna15@gmail.com"
+            href={`mailto:${settings.email}`}
             target="_blank"
             aria-label="Let's Connect"
           >
@@ -34,7 +38,7 @@ const Hero = () => {
 
         <div className="flex gap-10 text-[#e4ded7] sm:gap-12 md:gap-14 lg:gap-14">
           <Link
-            href="https://www.behance.net/abikrishna15"
+            href={settings.behanceUrl}
             target="_blank"
             aria-label="View Behance Profile"
           >
@@ -46,7 +50,7 @@ const Hero = () => {
             </motion.p>
           </Link>
           <Link
-            href="https://www.linkedin.com/in/abi-krishna-15abi"
+            href={settings.linkedinUrl}
             target="_blank"
             aria-label="View LinkedIn Profile"
           >
@@ -65,7 +69,7 @@ const Hero = () => {
           className={`relative flex flex-col items-center justify-center ${monaSans.className}`}
         >
           <AnimatedWords
-            title="ABI KRISHNA"
+            title={settings.profileName}
             style="inline-block overflow-hidden pt-1 -mr-4 sm:-mr-5 md:-mr-7 lg:-mr-9 -mb-1 sm:-mb-2 md:-mb-3 lg:-mb-4"
           />
           <motion.div
@@ -73,11 +77,13 @@ const Hero = () => {
             variants={imageAnimation}
           >
             <Image
-              src={profile}
+              src={settings.profileImageUrl}
               priority
-              alt="Profile"
-              data-blobity-tooltip="Abi Krishna"
+              alt={`${settings.profileName} profile`}
+              data-blobity-tooltip={settings.profileName}
               data-blobity-invert="false"
+              width={320}
+              height={320}
               className=" w-[150px] rounded-[16px] grayscale hover:grayscale-0 md:w-[200px] md:rounded-[32px] lg:w-[245px]"
             />
           </motion.div>
@@ -94,8 +100,7 @@ const Hero = () => {
           variants={bodyAnimation}
         >
           <p className="z-50 text-center text-[16px] font-medium text-[#e4ded7] md:text-[20px] lg:text-left">
-            Graphic & UI/UX Designer,<br />{" "}
-            shaping brands and digital experiences.
+            {settings.heroPrimaryText}
           </p>
         </motion.div>
 
@@ -104,7 +109,7 @@ const Hero = () => {
           variants={bodyAnimation}
         >
           <p className="text-right text-[16px] font-semibold text-[#e4ded7] md:text-[20px]">
-            Designing interfaces with purpose, available for freelance & collaborations.
+            {settings.heroSecondaryText}
           </p>
         </motion.div>
       </div>

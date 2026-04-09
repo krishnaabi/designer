@@ -1,9 +1,13 @@
 import ProjectCard from "./ProjectCard";
-import { devProjects, ProjectProps } from "./projectDetails";
-import { useState } from "react";
+import { WorkItem } from "../lib/site-content";
 
-const ProjectGrid = () => {
+type ProjectGridProps = {
+  works: WorkItem[];
+};
+
+const ProjectGrid = ({ works }: ProjectGridProps) => {
   // const [filter, setFilter] = useState(true);
+  const activeWorks = works.filter((project) => project.isActive);
 
   return (
     <>
@@ -28,16 +32,16 @@ const ProjectGrid = () => {
 
       {/* {filter ? ( */}
         <div className="grid w-[90%] grid-cols-1 grid-rows-2 gap-y-10 gap-x-6 lg:max-w-[1200px] lg:grid-cols-1">
-          {devProjects.map((project: ProjectProps) => (
+          {activeWorks.map((project, index) => (
             <ProjectCard
-              id={project.id}
+              id={index}
               key={project.id}
               name={project.name}
               description={project.description}
               technologies={project.technologies}
-              figma={project.figma}
-              demo={project.demo}
-              image={project.image}
+              figma={project.figmaUrl}
+              demo={project.demoUrl}
+              image={project.imageUrl}
               available={project.available}
             />
           ))}

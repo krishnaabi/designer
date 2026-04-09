@@ -1,14 +1,18 @@
-import { DesignProps } from "./designDetails";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import Link from "next/link";
 import "../globals.css";
-import profile from "../../public/samuel.avif";
-import slash from "../../public/review-slash.svg";
 import { motion } from "framer-motion";
 
-const BlogCard = ({ name, image, index, url }: DesignProps) => {
+type DesignCardProps = {
+  name: string;
+  image: string;
+  index: number;
+  url: string;
+};
+
+const DesignCard = ({ name, image, index, url }: DesignCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -48,7 +52,7 @@ const BlogCard = ({ name, image, index, url }: DesignProps) => {
               href={url}
               target="_blank"
               className="rounded-full"
-              aria-label="Open Blog Post"
+              aria-label="Open Design Collection"
             >
               <FontAwesomeIcon
                 icon={faArrowRight}
@@ -66,4 +70,4 @@ const BlogCard = ({ name, image, index, url }: DesignProps) => {
   );
 };
 
-export default BlogCard;
+export default DesignCard;

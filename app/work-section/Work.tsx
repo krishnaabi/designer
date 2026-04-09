@@ -1,6 +1,11 @@
 import ProjectGrid from "./ProjectGrid";
+import { WorkItem } from "../lib/site-content";
 
-const Work = () => {
+type WorkProps = {
+  works: WorkItem[];
+};
+
+const Work = ({ works }: WorkProps) => {
   return (
     <section
       className="relative z-10 flex w-full flex-col items-center justify-center bg-[#0E1016] bg-cover bg-center py-16 md:py-20 lg:py-20"
@@ -9,7 +14,7 @@ const Work = () => {
         Featured Work
       </h2>
 
-      <ProjectGrid />
+      <ProjectGrid works={works} />
     </section>
   );
 };

@@ -1,13 +1,17 @@
 import DesignCard from "./DesignCard";
-import { designDetails } from "./designDetails";
 import AnimatedWords2 from "../animations/AnimatedWords2";
 import { monaSans } from "../fonts/monaSans";
 import AnimatedBody from "../animations/AnimatedBody";
 import { motion } from "framer-motion";
-import linkedIn from "../../public/linkedin.png";
-import Image from "next/image";
+import { DesignItem } from "../lib/site-content";
 
-const DesignsGrid = () => {
+type DesignsGridProps = {
+  designs: DesignItem[];
+};
+
+const DesignsGrid = ({ designs }: DesignsGridProps) => {
+  const activeDesigns = designs.filter((design) => design.isActive);
+
   return (
     <section
       className="z-10 flex w-full flex-col items-center justify-center overflow-hidden bg-[#0E1016] bg-cover bg-center pt-20 md:pb-16"
@@ -26,12 +30,12 @@ const DesignsGrid = () => {
         </AnimatedBody>
       </div>
       <motion.div className="grid w-[90%] max-w-[1345px] grid-cols-1 grid-rows-6 place-content-center place-items-center gap-x-6 gap-y-6 sm:grid-cols-2  sm:grid-rows-3 lg:grid-cols-3 lg:grid-rows-1">
-        {designDetails.map((review, index) => {
+        {activeDesigns.map((review, index) => {
           return (
             <DesignCard
-              key={index}
+              key={review.id}
               name={review.name}
-              image={review.image}
+              image={review.imageUrl}
               url={review.url}
               index={index}
             />

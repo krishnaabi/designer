@@ -1,14 +1,33 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faFigma } from "@fortawesome/free-brands-svg-icons";
-import { ProjectProps } from "./projectDetails";
 import Link from "next/link";
 import Image from "next/image";
 import AnimatedTitle from "../animations/AnimatedTitle";
 import AnimatedBody from "../animations/AnimatedBody";
 import { motion } from "framer-motion";
 
-const ProjectCard = ({ id, name, description, technologies, figma, demo, image, available }: ProjectProps) => {
+type ProjectCardProps = {
+  id: number;
+  name: string;
+  description: string;
+  technologies: string[];
+  figma: string;
+  demo: string;
+  image: string;
+  available: boolean;
+};
+
+const ProjectCard = ({
+  id,
+  name,
+  description,
+  technologies,
+  figma,
+  demo,
+  image,
+  available,
+}: ProjectCardProps) => {
   return (
     <motion.div
       style={
@@ -27,6 +46,8 @@ const ProjectCard = ({ id, name, description, technologies, figma, demo, image, 
       <Image
         src={image}
         alt={name}
+        width={1200}
+        height={900}
         className={`absolute -bottom-2 w-[70%] sm:w-[85%] md:w-[60%] lg:max-w-[55%] ${
           id % 2 === 0 ? "right-0" : "left-0"
         }`}
