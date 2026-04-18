@@ -176,3 +176,29 @@ on storage.objects
 for select
 to public
 using (bucket_id = 'portfolio-assets');
+
+-- Keep identity sequences aligned with existing rows.
+-- This avoids duplicate key errors when prior rows were inserted with explicit IDs.
+select setval(
+  pg_get_serial_sequence('public.songs', 'id'),
+  coalesce((select max(id) from public.songs), 0) + 1,
+  false
+);
+
+select setval(
+  pg_get_serial_sequence('public.designs', 'id'),
+  coalesce((select max(id) from public.designs), 0) + 1,
+  false
+);
+
+select setval(
+  pg_get_serial_sequence('public.works', 'id'),
+  coalesce((select max(id) from public.works), 0) + 1,
+  false
+);
+
+select setval(
+  pg_get_serial_sequence('public.blogs', 'id'),
+  coalesce((select max(id) from public.blogs), 0) + 1,
+  false
+);

@@ -130,7 +130,13 @@ const toBlog = (row: DbBlogRow): BlogItem => ({
   isActive: row.is_active,
 });
 
-const normalizeId = (id: number) => (id > 0 ? id : undefined);
+const normalizeId = (id: unknown) => {
+  const value = typeof id === "number" ? id : Number(id);
+  return Number.isFinite(value) && value > 0 ? value : undefined;
+};
+
+const normalizeTechnologies = (technologies: string[]) =>
+  technologies.map((technology) => technology.trim()).filter(Boolean);
 
 const mapSettingsToDb = (settings: SiteSettings): DbSettingsRow => ({
   id: SETTINGS_ROW_ID,
@@ -146,45 +152,57 @@ const mapSettingsToDb = (settings: SiteSettings): DbSettingsRow => ({
   contact_intro_text: settings.contactIntroText,
 });
 
-const mapSongToDb = (song: SongItem) => ({
-  id: normalizeId(song.id),
-  image_url: song.imageUrl,
-  sort_order: song.sortOrder,
-  is_active: song.isActive,
-});
+const mapSongToDb = (song: SongItem) => {
+  const id = normalizeId(song.id);
+  return {
+    ...(id !== undefined ? { id } : {}),
+    image_url: song.imageUrl,
+    sort_order: song.sortOrder,
+    is_active: song.isActive,
+  };
+};
 
-const mapDesignToDb = (design: DesignItem) => ({
-  id: normalizeId(design.id),
-  name: design.name,
-  image_url: design.imageUrl,
-  url: design.url,
-  sort_order: design.sortOrder,
-  is_active: design.isActive,
-});
+const mapDesignToDb = (design: DesignItem) => {
+  const id = normalizeId(design.id);
+  return {
+    ...(id !== undefined ? { id } : {}),
+    name: design.name,
+    image_url: design.imageUrl,
+    url: design.url,
+    sort_order: design.sortOrder,
+    is_active: design.isActive,
+  };
+};
 
-const mapWorkToDb = (work: WorkItem) => ({
-  id: normalizeId(work.id),
-  name: work.name,
-  description: work.description,
-  technologies: work.technologies,
-  figma_url: work.figmaUrl,
-  demo_url: work.demoUrl,
-  image_url: work.imageUrl,
-  available: work.available,
-  sort_order: work.sortOrder,
-  is_active: work.isActive,
-});
+const mapWorkToDb = (work: WorkItem) => {
+  const id = normalizeId(work.id);
+  return {
+    ...(id !== undefined ? { id } : {}),
+    name: work.name,
+    description: work.description,
+    technologies: normalizeTechnologies(work.technologies),
+    figma_url: work.figmaUrl,
+    demo_url: work.demoUrl,
+    image_url: work.imageUrl,
+    available: work.available,
+    sort_order: work.sortOrder,
+    is_active: work.isActive,
+  };
+};
 
-const mapBlogToDb = (blog: BlogItem) => ({
-  id: normalizeId(blog.id),
-  title: blog.title,
-  image_url: blog.imageUrl,
-  date_label: blog.dateLabel,
-  url: blog.url,
-  available: blog.available,
-  sort_order: blog.sortOrder,
-  is_active: blog.isActive,
-});
+const mapBlogToDb = (blog: BlogItem) => {
+  const id = normalizeId(blog.id);
+  return {
+    ...(id !== undefined ? { id } : {}),
+    title: blog.title,
+    image_url: blog.imageUrl,
+    date_label: blog.dateLabel,
+    url: blog.url,
+    available: blog.available,
+    sort_order: blog.sortOrder,
+    is_active: blog.isActive,
+  };
+};
 
 const sortByOrder = <T extends { sortOrder: number }>(items: T[]) =>
   [...items].sort((a, b) => a.sortOrder - b.sortOrder);
@@ -195,21 +213,57 @@ const syncTableRows = async <T>(
   mapper: (row: T) => Record<string, unknown>,
 ) => {
   const supabase = getSupabaseServiceClient();
+  const mappedRows = rows.map(mapper);
+  const rowsWithId: Record<string, unknown>[] = [];
+  const rowsWithoutId: Record<string, unknown>[] = [];
 
-  const { data, error } = await supabase
-    .from(table)
-    .upsert(rows.map(mapper), { onConflict: "id" })
-    .select("id");
+  for (const row of mappedRows) {
+    const normalizedId = normalizeId((row as { id?: unknown }).id);
+    if (normalizedId !== undefined) {
+      rowsWithId.push({ ...row, id: normalizedId });
+      continue;
+    }
 
-  if (error) {
-    throw error;
+    const { id: _id, ...rowWithoutId } = row as { id?: unknown } & Record<string, unknown>;
+    rowsWithoutId.push(rowWithoutId);
   }
 
-  const keepIds = (data ?? [])
-    .map((row) => Number((row as { id: number }).id))
-    .filter((id) => Number.isFinite(id));
+  const keepIds: number[] = [];
 
-  if (keepIds.length === 0) {
+  if (rowsWithId.length > 0) {
+    const { data, error } = await supabase
+      .from(table)
+      .upsert(rowsWithId, { onConflict: "id" })
+      .select("id");
+
+    if (error) {
+      throw error;
+    }
+
+    keepIds.push(
+      ...(data ?? [])
+        .map((row) => Number((row as { id: number }).id))
+        .filter((id) => Number.isFinite(id)),
+    );
+  }
+
+  if (rowsWithoutId.length > 0) {
+    const { data, error } = await supabase.from(table).insert(rowsWithoutId).select("id");
+
+    if (error) {
+      throw error;
+    }
+
+    keepIds.push(
+      ...(data ?? [])
+        .map((row) => Number((row as { id: number }).id))
+        .filter((id) => Number.isFinite(id)),
+    );
+  }
+
+  const uniqueKeepIds = Array.from(new Set(keepIds));
+
+  if (uniqueKeepIds.length === 0) {
     const { error: deleteError } = await supabase.from(table).delete().gt("id", 0);
     if (deleteError) {
       throw deleteError;
@@ -220,7 +274,7 @@ const syncTableRows = async <T>(
   const { error: deleteError } = await supabase
     .from(table)
     .delete()
-    .not("id", "in", `(${keepIds.join(",")})`);
+    .not("id", "in", `(${uniqueKeepIds.join(",")})`);
 
   if (deleteError) {
     throw deleteError;

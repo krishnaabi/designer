@@ -10,3 +10,30 @@
 Notes:
 - If Supabase env vars are missing, the site falls back to local default content.
 - Uploads are stored in the public bucket `portfolio-assets`.
+
+Troubleshooting:
+- If save fails with `23505 duplicate key value violates unique constraint "..._pkey"` on `songs/designs/works/blogs`, your identity sequence is behind existing IDs.
+- Run this once in Supabase SQL Editor:
+
+```sql
+select setval(
+  pg_get_serial_sequence('public.songs', 'id'),
+  coalesce((select max(id) from public.songs), 0) + 1,
+  false
+);
+select setval(
+  pg_get_serial_sequence('public.designs', 'id'),
+  coalesce((select max(id) from public.designs), 0) + 1,
+  false
+);
+select setval(
+  pg_get_serial_sequence('public.works', 'id'),
+  coalesce((select max(id) from public.works), 0) + 1,
+  false
+);
+select setval(
+  pg_get_serial_sequence('public.blogs', 'id'),
+  coalesce((select max(id) from public.blogs), 0) + 1,
+  false
+);
+```

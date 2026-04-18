@@ -681,19 +681,7 @@ const AdminPage = () => {
                   placeholder="Description"
                   className="rounded border border-[#3a3f4d] bg-[#0E1016] px-2 py-1 md:col-span-2"
                 />
-                <input
-                  value={work.technologies.join(", ")}
-                  onChange={(event) =>
-                    updateWork(index, {
-                      technologies: event.target.value
-                        .split(",")
-                        .map((value) => value.trim())
-                        .filter(Boolean),
-                    })
-                  }
-                  placeholder="Technologies (comma separated)"
-                  className="rounded border border-[#3a3f4d] bg-[#0E1016] px-2 py-1 md:col-span-2"
-                />
+                
                 <input
                   value={work.figmaUrl}
                   onChange={(event) => updateWork(index, { figmaUrl: event.target.value })}
