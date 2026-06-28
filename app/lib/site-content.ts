@@ -26,6 +26,7 @@ export type DesignItem = {
   url: string;
   sortOrder: number;
   isActive: boolean;
+  description?: string;
 };
 
 export type WorkItem = {
@@ -39,6 +40,10 @@ export type WorkItem = {
   available: boolean;
   sortOrder: number;
   isActive: boolean;
+  role?: string;
+  timeline?: string;
+  need?: string;
+  isCurrent?: boolean;
 };
 
 export type BlogItem = {

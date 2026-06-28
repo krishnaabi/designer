@@ -22,12 +22,13 @@ const Reviews = () => {
           className="w-[90%] text-center text-[14px] font-semibold uppercase sm:w-[500px] md:w-[550px] md:text-[16px]"
         />
       </div>
-      <motion.div className="grid w-[90%] max-w-[1345px] grid-cols-1 grid-rows-6 place-content-center place-items-center gap-x-6 gap-y-6 sm:grid-cols-2  sm:grid-rows-3 lg:grid-cols-3 lg:grid-rows-1">
+      <motion.div className="grid w-[90%] max-w-[1345px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 place-content-center place-items-stretch">
         {reviewDetails.map((review, index) => {
           return (
             <ReviewCard
               key={index}
-              name={review.name}
+              number={review.number}
+              label={review.label}
               testimonial={review.testimonial}
               index={index}
             />
@@ -50,12 +51,10 @@ const Reviews = () => {
           amount: "some",
           once: true,
         }}
-        href="https://www.linkedin.com/in/abi-krishna-15abi/"
-        target="_blank"
-        className="bg-white flex justify-center items-center mt-16 rounded-lg"
+        href="mailto:abikrishna15@gmail.com"
+        className="bg-white flex justify-center items-center mt-16 rounded-lg transition-transform hover:scale-[1.03]"
       >
-        <span className="text-black text-xl text-bold py-2 px-12">Hire me</span>
-        {/* <Image src={linkedIn} alt={"hire me"} className="w-full h-full" /> */}
+        <span className="text-black text-xl font-bold py-2 px-12">Let&apos;s Work Together</span>
       </motion.a>
 
       {/* <motion.div

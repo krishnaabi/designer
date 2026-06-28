@@ -9,6 +9,20 @@ type DesignsGridProps = {
   designs: DesignItem[];
 };
 
+const getDesignDescription = (name: string) => {
+  const normName = name.toLowerCase();
+  if (normName.includes("graphic")) {
+    return "Explore 25+ branding and visual identity projects.";
+  }
+  if (normName.includes("product") || normName.includes("ui/ux")) {
+    return "Explore UX case studies, wireframes, user research, design systems, and interactive prototypes.";
+  }
+  if (normName.includes("marketing") || normName.includes("visual")) {
+    return "View campaign creatives, advertisements, and social media assets.";
+  }
+  return "";
+};
+
 const DesignsGrid = ({ designs }: DesignsGridProps) => {
   const activeDesigns = designs.filter((design) => design.isActive);
 
@@ -29,12 +43,13 @@ const DesignsGrid = ({ designs }: DesignsGridProps) => {
           visual design to achieve measurable impact.
         </AnimatedBody>
       </div>
-      <motion.div className="grid w-[90%] max-w-[1345px] grid-cols-1 grid-rows-6 place-content-center place-items-center gap-x-6 gap-y-6 sm:grid-cols-2  sm:grid-rows-3 lg:grid-cols-3 lg:grid-rows-1">
+      <motion.div className="grid w-[90%] max-w-[1345px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 place-content-center place-items-stretch">
         {activeDesigns.map((review, index) => {
           return (
             <DesignCard
               key={review.id}
               name={review.name}
+              description={review.description || getDesignDescription(review.name)}
               image={review.imageUrl}
               url={review.url}
               index={index}

@@ -16,6 +16,10 @@ type ProjectCardProps = {
   demo: string;
   image: string;
   available: boolean;
+  isCurrent?: boolean;
+  need?: string;
+  role?: string;
+  timeline?: string;
 };
 
 const ProjectCard = ({
@@ -27,6 +31,10 @@ const ProjectCard = ({
   demo,
   image,
   available,
+  isCurrent = false,
+  need,
+  role,
+  timeline,
 }: ProjectCardProps) => {
   const isEven = id % 2 === 0;
 
@@ -111,26 +119,101 @@ const ProjectCard = ({
           </div>
 
           <div className="flex flex-1 flex-col justify-center text-white">
+            {isCurrent && (
+              <span className="text-[12px] font-extrabold uppercase tracking-widest text-[#e4ded7]/50 mb-1 select-none">
+                Current
+              </span>
+            )}
+            
             <AnimatedTitle
               text={name}
               className="max-w-[95%] text-[30px] leading-none text-white sm:text-[34px] md:text-[40px] lg:max-w-[440px] lg:text-[48px]"
               wordSpace={"mr-[0.25em]"}
               charSpace={"-mr-[0.01em]"}
             />
-            <AnimatedBody
-              text={description}
-              className="mt-3 w-[95%] max-w-[460px] text-[14px] font-semibold text-[#95979D] sm:mt-4 sm:text-[16px]"
-            />
-            <div className="mt-6 flex flex-wrap gap-2 sm:gap-3 lg:mt-8 lg:gap-4">
-              {technologies.map((tech, techIndex) => (
-                <AnimatedTitle
-                  text={tech}
-                  wordSpace={"mr-[0.25em]"}
-                  charSpace={"mr-[0.01em]"}
-                  key={techIndex}
-                  className="text-[12px] font-bold uppercase sm:text-[14px] md:text-[16px] lg:text-[18px]"
-                />
-              ))}
+
+            <div className="mt-6 flex flex-col gap-4 text-[14px] sm:text-[16px] text-left">
+              {isCurrent ? (
+                <>
+                  <div>
+                    <span className="text-[#e4ded7]/60 font-semibold uppercase text-[11px] block tracking-wider mb-1 select-none">
+                      Description
+                    </span>
+                    <p className="text-[#c4c6cd] font-medium leading-relaxed">
+                      {description}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-[#e4ded7]/60 font-semibold uppercase text-[11px] block tracking-wider mb-1 select-none">
+                      Tools
+                    </span>
+                    <div className="flex flex-wrap gap-2 mt-1">
+                      {technologies.map((tech, idx) => (
+                        <span key={idx} className="text-[#e4ded7] font-semibold text-[13px] bg-white/5 border border-[#e4ded7]/10 rounded-full px-3 py-1 hover:bg-white/10 hover:border-[#e4ded7]/30 transition-all select-none">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  {need && (
+                    <div>
+                      <span className="text-[#e4ded7]/60 font-semibold uppercase text-[11px] block tracking-wider mb-1 select-none">
+                        Need
+                      </span>
+                      <p className="text-[#c4c6cd] font-medium leading-relaxed">
+                        {need}
+                      </p>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <div className="grid grid-cols-2 gap-4">
+                    {role && (
+                      <div>
+                        <span className="text-[#e4ded7]/60 font-semibold uppercase text-[11px] block tracking-wider mb-1 select-none">
+                          Role
+                        </span>
+                        <p className="text-[#c4c6cd] font-medium leading-relaxed">
+                          {role}
+                        </p>
+                      </div>
+                    )}
+                    {timeline && (
+                      <div>
+                        <span className="text-[#e4ded7]/60 font-semibold uppercase text-[11px] block tracking-wider mb-1 select-none">
+                          Timeline
+                        </span>
+                        <p className="text-[#c4c6cd] font-medium leading-relaxed">
+                          {timeline}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <span className="text-[#e4ded7]/60 font-semibold uppercase text-[11px] block tracking-wider mb-1 select-none">
+                      Description
+                    </span>
+                    <p className="text-[#c4c6cd] font-medium leading-relaxed">
+                      {description}
+                    </p>
+                  </div>
+                  {technologies.length > 0 && (
+                    <div>
+                      <span className="text-[#e4ded7]/60 font-semibold uppercase text-[11px] block tracking-wider mb-1 select-none">
+                        Tools
+                      </span>
+                      <div className="flex flex-wrap gap-2 mt-1">
+                        {technologies.map((tech, idx) => (
+                          <span key={idx} className="text-[#e4ded7] font-semibold text-[13px] bg-white/5 border border-[#e4ded7]/10 rounded-full px-3 py-1 hover:bg-white/10 hover:border-[#e4ded7]/30 transition-all select-none">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>

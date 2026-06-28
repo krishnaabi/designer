@@ -16,10 +16,10 @@ export const defaultSiteContent: SiteContent = {
     behanceUrl: "https://www.behance.net/abikrishna15",
     linkedinUrl: "https://www.linkedin.com/in/abi-krishna-15abi/",
     heroPrimaryText:
-      "Graphic & UI/UX Designer, shaping brands and digital experiences.",
+      "Graphic & UI/UX Designer - Product Designer crafting user experiences that increase conversion and simplify complex workflows.",
     heroSecondaryText:
-      "Designing interfaces with purpose, available for freelance & collaborations.",
-    contactTitle: "Let's Connect",
+      "Designing intuitive digital products through research, strategy, and collaboration.",
+    contactTitle: "Let's build something meaningful together.",
     contactIntroText: "Let's chat over ideas, design, or coffee.",
   },
   songs: captureNumbers.map((value, index) => ({
@@ -31,7 +31,8 @@ export const defaultSiteContent: SiteContent = {
   designs: [
     {
       id: 1,
-      name: "Graphic Designs",
+      name: "Graphic Design",
+      description: "Explore 25+ branding and visual identity projects.",
       imageUrl: "/graphic designer.jpg",
       url: "https://resolute-theater-bd2.notion.site/Designs-Graphic-UI-UX-1b9a8cfceff181f9a5d1e6953ebb88e7?source=copy_link",
       sortOrder: 0,
@@ -39,7 +40,8 @@ export const defaultSiteContent: SiteContent = {
     },
     {
       id: 2,
-      name: "UI/UX Designs",
+      name: "Product Design",
+      description: "Explore UX case studies, wireframes, user research, design systems, and interactive prototypes.",
       imageUrl: "/uiux.jpg",
       url: "https://resolute-theater-bd2.notion.site/Designs-Graphic-UI-UX-1b9a8cfceff181f9a5d1e6953ebb88e7?source=copy_link",
       sortOrder: 1,
@@ -47,7 +49,8 @@ export const defaultSiteContent: SiteContent = {
     },
     {
       id: 3,
-      name: "Visual Designs",
+      name: "Marketing Design",
+      description: "View campaign creatives, advertisements, and social media assets.",
       imageUrl: "/visual designer.jpg",
       url: "https://resolute-theater-bd2.notion.site/Designs-Graphic-UI-UX-1b9a8cfceff181f9a5d1e6953ebb88e7?source=copy_link",
       sortOrder: 2,
@@ -62,8 +65,8 @@ export const defaultSiteContent: SiteContent = {
         "Hanioo is a user-friendly platform connecting interpreters and clients for seamless communication, transparent booking, and secure payment management.",
       technologies: ["Figma", "UI/UX Design", "Julius AI", "Mira"],
       figmaUrl:
-        "https://www.figma.com/proto/GGLyNXbkrHmvXWZD4ks84u/Case-Study-Template---Creative-Ferry--Community-?node-id=282-79&p=f&t=DIvFzj94SlEW0MeU-1&scaling=min-zoom&content-scaling=fixed&page-id=282%3A58",
-      demoUrl: "",
+        "https://www.behance.net/gallery/248442393/Hanioo-Interpretation-Application",
+      demoUrl: "https://play.google.com/store/apps/details?id=com.honey.hanioo&pcampaignid=web_share",
       imageUrl: "/0.jpg",
       available: true,
       sortOrder: 0,
@@ -71,28 +74,28 @@ export const defaultSiteContent: SiteContent = {
     },
     {
       id: 2,
-      name: "B2M Business Solutions",
+      name: "SreeSivam",
       description:
-        "Corporate website design for B2M Business Solutions, presenting IT and business services with a clean, structured layout aimed at professional credibility and client trust.",
-      technologies: ["Figma", "UI/UX Design", "Business Website"],
+        "SreeSivam is a premium devotional e-commerce platform specializing in authentic South Indian religious artifacts, traditional Golu dolls, brass pooja items, and sacred collectibles. The platform serves devout customers seeking genuine, high-quality devotional products with cultural authenticity.",
+      technologies: ["E-commerce", "UI Designs", "UX Designs"],
       figmaUrl:
-        "https://www.figma.com/design/3cJPem7H5aVhIZ0ddset8o/B2M-Business-Solution?node-id=0-1&t=WIQM71gJHfY2ACV1-1",
-      demoUrl: "https://www.b2mbs.com/",
-      imageUrl: "/2.png",
+        "https://www.figma.com/proto/JZE1P2FLlfolpAhvI7auSH/Designs?node-id=3-2&t=U5GkbAzDjkfSLFNT-1",
+      demoUrl: "https://www.sreesivam.com/",
+      imageUrl: "https://fiiljywqbkyxunyolexq.supabase.co/storage/v1/object/public/portfolio-assets/works/1776305679507-influencer-marketing-1.jpg",
       available: true,
       sortOrder: 1,
       isActive: true,
     },
     {
       id: 3,
-      name: "Rajam Taxi",
+      name: "Flubn",
       description:
-        "Responsive website design for Rajam Taxi, a regional cab service, offering fast access to booking, pricing, and contact information for local travelers.",
-      technologies: ["Figma", "UI/UX Design", "Taxi Website"],
+        "FLUBN is a B2B/B2C marketplace designed specifically for the Indian influencer marketing ecosystem. The platform addresses the trust deficit between brands and influencers by implementing a comprehensive verification system, mutual-consent contact sharing, tiered subscription plans, and real-time chat. Every design decision was rooted in user research conducted with 10+ Indian brands and influencers.",
+      technologies: ["PRODUCT DESIGN", "DESIGN SYSTEM", "PROTOTYPING", "USER RESEARCH"],
       figmaUrl:
-        "https://www.figma.com/design/w8shOmeU1cpusaqnMpGPKy/Cab?node-id=0-1&t=PwKQoFFVfbWALXbw-1",
-      demoUrl: "https://rajamtaxiservice.in/",
-      imageUrl: "/4.jpg",
+        "https://www.behance.net/gallery/248507725/FLUBN-Indias-Modern-Influencer-Marketplace",
+      demoUrl: "",
+      imageUrl: "https://fiiljywqbkyxunyolexq.supabase.co/storage/v1/object/public/portfolio-assets/works/1776665706548-dark.png",
       available: true,
       sortOrder: 2,
       isActive: true,
@@ -109,6 +112,19 @@ export const defaultSiteContent: SiteContent = {
       imageUrl: "/1.jpg",
       available: true,
       sortOrder: 3,
+      isActive: true,
+    },
+    {
+      id: 15,
+      name: "Portagam",
+      description:
+        "PORTAGAM is a global sourcing & parceling service not a normal e-commerce store. It helps people across the world get authentic local Indian products foods, groceries, sweets, clothing, and specialty goods from multiple places in India, packed together and shipped internationally.",
+      technologies: [],
+      figmaUrl: "",
+      demoUrl: "https://www.portagam.com/",
+      imageUrl: "https://fiiljywqbkyxunyolexq.supabase.co/storage/v1/object/public/portfolio-assets/works/1776665814068-international-courier-service-scaled.jpg",
+      available: true,
+      sortOrder: 4,
       isActive: true,
     },
   ],
