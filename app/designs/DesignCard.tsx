@@ -7,12 +7,13 @@ import { motion } from "framer-motion";
 
 type DesignCardProps = {
   name: string;
+  description?: string;
   image: string;
   index: number;
   url: string;
 };
 
-const DesignCard = ({ name, image, index, url }: DesignCardProps) => {
+const DesignCard = ({ name, description, image, index, url }: DesignCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -29,42 +30,36 @@ const DesignCard = ({ name, image, index, url }: DesignCardProps) => {
         amount: "some",
         once: true,
       }}
-      className="relative flex h-[473px] w-[100%] flex-col items-start justify-between rounded-[23px] border-[3px] border-[#212531] bg-transparent sm:h-[450px] sm:items-center sm:justify-start lg:h-[393px] lg:max-w-[438px] "
+      className="relative flex min-h-[460px] w-[100%] flex-col items-start justify-between rounded-[23px] border-[3px] border-[#212531] bg-[#161922]/30 p-6 transition-all duration-300 hover:border-[#e4ded7]/30 sm:min-h-[440px] lg:min-h-[420px] lg:max-w-[438px]"
     >
-      <div className="mt-4 h-[100%] w-[90%] lg:mt-5 lg:w-[92%] rounded-lg overflow-hidden">
-        <div className="h-[80%] w-full md:h-[90%]">
-          <Image
-            src={image}
-            alt={name}
-            width={1600}
-            height={840}
-            className="h-full w-full rounded-lg bg-contain bg-center object-cover transition-transform hover:scale-[1.05]"
-          />
-        </div>
+      <div className="w-full h-[180px] rounded-lg overflow-hidden relative">
+        <Image
+          src={image}
+          alt={name}
+          width={1600}
+          height={840}
+          className="h-full w-full rounded-lg bg-contain bg-center object-cover transition-transform hover:scale-[1.05]"
+        />
       </div>
 
-      <div className="flex">
-        <div className="flex justify-between gap-1">
-          <h3 className="w-[100%] p-2 pb-8 text-[18px] font-bold uppercase tracking-[-0.46056px] text-[#e4ded7]">
-            {name}
-          </h3>
-          <Link
-              href={url}
-              target="_blank"
-              className="rounded-full"
-              aria-label="Open Design Collection"
-            >
-              <FontAwesomeIcon
-                icon={faArrowRight}
-                className=" w-[16px] rounded-full bg-[#0E1016] p-3 text-[16px] text-[#fff] md:w-[20px] md:text-[20px] lg:w-[18px] lg:p-4 lg:text-[18px]"
-                data-blobity
-                data-blobity-radius="30"
-                data-blobity-offset-x="4"
-                data-blobity-offset-y="4"
-                data-blobity-magnetic="false"
-              />
-            </Link>
-        </div>
+      <div className="flex flex-col gap-2 mt-4 w-full">
+        <h3 className="text-[22px] font-bold uppercase tracking-wide text-[#e4ded7]">
+          {name}
+        </h3>
+        <p className="text-[15px] leading-relaxed text-[#e4ded7]/70">
+          {description}
+        </p>
+      </div>
+
+      <div className="mt-4 pt-4 border-t border-[#e4ded7]/10 w-full flex items-center justify-between">
+        <Link
+          href={url}
+          target="_blank"
+          className="group flex items-center gap-2 text-[16px] font-bold uppercase tracking-wider text-[#e4ded7] transition-all hover:text-[#fff]"
+          aria-label="Open Design Collection"
+        >
+          <span>→ Explore</span>
+        </Link>
       </div>
     </motion.div>
   );

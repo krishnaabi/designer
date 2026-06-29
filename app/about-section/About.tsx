@@ -9,16 +9,56 @@ type AboutProps = {
 };
 
 const About = ({ songs }: AboutProps) => {
+  const stats = [
+    { value: "4+", label: "Years Experience" },
+    { value: "50+", label: "Projects Delivered" },
+    { value: "10+", label: "Digital Products" },
+    { value: "5+", label: "Countries Served" }
+  ];
+
+  const skillCategories = [
+    {
+      title: "UX Design",
+      skills: [
+        "User Research", "Information Architecture", "User Flows", "Wireframing",
+        "Interaction Design", "Prototyping", "High-Fidelity UI Design", "Usability Testing",
+        "Journey Mapping", "Design Systems", "Responsive Design", "WCAG Accessibility"
+      ]
+    },
+    {
+      title: "Design Tools",
+      skills: [
+        "Figma", "FigJam", "Miro", "Adobe Illustrator", "Adobe Photoshop", "Adobe XD", "CorelDRAW", "Canva"
+      ]
+    },
+    {
+      title: "Technical",
+      skills: [
+        "HTML", "CSS", "Basic JavaScript", "Developer Handoff", "Flutter Collaboration"
+      ]
+    },
+    {
+      title: "Product & Domain",
+      skills: [
+        "SaaS Products", "B2B & B2C Platforms", "Product Thinking", "AI-native Interface Design", "Generative AI for UX"
+      ]
+    },
+    {
+      title: "Collaboration",
+      skills: [
+        "Agile Methodology", "Cross-functional Collaboration", "Stakeholder Communication", "Jira", "Design Reviews"
+      ]
+    }
+  ];
+
   return (
     <section
-      className="relative z-10 w-full items-center justify-center overflow-hidden bg-[#0E1016] bg-cover bg-center pt-16 pb-36 md:pt-20 md:pb-44 lg:pt-20 lg:pb-56"
+      className="relative z-10 w-full items-center justify-center overflow-hidden bg-[#0E1016] bg-cover bg-center pt-16 md:pt-20 lg:pt-20"
       id="about"
     >
       <div className="mx-auto flex w-[90%] flex-col items-center justify-center lg:max-w-[1212.8px]">
         <AnimatedTitle
-          text={
-            "I SHAPE BRANDS WITH DESIGN THAT THINKS, FEELS, AND CONNECTS."
-          }
+          text={"I DESIGN DIGITAL PRODUCTS THAT SOLVE REAL PROBLEMS."}
           className={
             "mb-10 text-left text-[40px] font-bold leading-[0.9em] tracking-tighter text-[#e4ded7] sm:text-[45px] md:mb-16 md:text-[60px] lg:text-[80px]"
           }
@@ -27,108 +67,71 @@ const About = ({ songs }: AboutProps) => {
         />
 
         <div className="mx-auto flex w-[100%] flex-col lg:max-w-[1200px] lg:flex-row lg:gap-20">
-          <div className="mb-10 flex w-[100%] flex-col gap-4 text-[18px] font-medium  leading-relaxed tracking-wide text-[#e4ded7] md:mb-16 md:gap-6 md:text-[20px] md:leading-relaxed lg:mb-16  lg:max-w-[90%] lg:text-[24px] ">
+          {/* Left side: Stats & Paragraphs */}
+          <div className="mb-10 flex w-[100%] flex-col gap-4 text-[18px] font-medium leading-relaxed tracking-wide text-[#e4ded7] md:mb-16 md:gap-6 md:text-[20px] md:leading-relaxed lg:mb-16 lg:w-[65%] lg:text-[24px]">
+            <h3 className="text-[20px] font-bold uppercase tracking-wider text-[#e4ded7]/70">About me</h3>
+            
+            {/* Stat Cards Grid */}
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 mb-4 mt-2">
+              {stats.map((stat, i) => (
+                <div key={i} className="flex flex-col rounded-xl border border-[#e4ded7]/10 bg-[#e4ded7]/5 p-4 text-left backdrop-blur-sm transition-all duration-300 hover:border-[#e4ded7]/30">
+                  <span className="text-[28px] font-extrabold text-[#e4ded7] sm:text-[32px]">{stat.value}</span>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#e4ded7]/60 mt-1">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+
             <AnimatedBody
               text={
-                "I specialize in crafting high-impact UI/UX designs, graphic systems, and brand identities building conversion-focused websites and engaging visuals for startups, agencies, and creatives. I love turning ideas into intuitive, user-first experiences that feel as good as they look."
+                "I'm a Product & UI/UX Designer with 4+ years of experience creating user-centered digital products across SaaS, B2B, B2C, and eCommerce."
               }
             />
             <AnimatedBody
               text={
-                "Whether I’m designing a sleek user interface or coding a complex application, I’m always striving to create something unique and innovative. I love experimenting with new technologies and staying up-to-date with the latest trends in the tech world."
-              }
-              className={"hidden"}
-            />
-            <AnimatedBody
-              text={
-                "With over 4 years of experience across tech, lifestyle, and business sectors, I’ve helped brands define their voice both visually and functionally. From mobile apps and responsive websites to print materials and packaging, I bring clarity, consistency, and creativity to every pixel."
+                "I specialize in transforming business goals into intuitive user experiences through research, wireframing, prototyping, usability testing, and scalable design systems."
               }
             />
             <AnimatedBody
               text={
-                "I’ve worked with startups, growing companies, and enterprise teams delivering everything from scroll-stopping social content to full product UI systems. Whether it's a pitch deck or a design system, I mix structure with storytelling to create visuals that connect."
+                "At Honey Universal Digital, I lead the product design for Hanioo, collaborating with product managers and developers to transform user insights into scalable digital experiences."
               }
             />
             <AnimatedBody
               text={
-                "For me, design isn’t just about how things look it’s about how they work, feel, and make people react."
-              }
-            />
-            <AnimatedBody
-              text={
-                "Beyond design, I enjoy storytelling, visual experimentation, and exploring how AI tools can push creative boundaries."
+                "I enjoy solving complex UX challenges, simplifying user journeys, and designing digital products that create measurable value for both users and businesses."
               }
             />
           </div>
 
-          <div className="mb-24 flex w-[100%] flex-col gap-4 text-[18px] font-normal leading-relaxed tracking-wide text-[#e4ded7]/80 sm:mb-32 md:mb-40 md:gap-6 md:text-[16px] md:leading-normal lg:mt-0 lg:mb-16 lg:max-w-[30%] lg:text-[18px]">
-            <div className="flex flex-col gap-4 md:gap-3">
-              <AnimatedTitle
-                text={"UI/UX Design"}
-                className={
-                  "text-[24px] text-[#e4ded7] md:text-[30px] lg:text-[20px]"
-                }
-                wordSpace={"mr-[0.25em]"}
-                charSpace={"mr-[0.01em]"}
-              />
-              <AnimatedBody
-                text={
-                  "Figma, FigJam, Notion, Adobe XD, Framer, UX Research, Wireframing, Prototyping."
-                }
-              />
-            </div>
-            <div className="flex flex-col gap-3">
-              <AnimatedTitle
-                text={"Graphic & Visual Design"}
-                className={
-                  "text-[24px] text-[#e4ded7] md:text-[30px] lg:text-[20px]"
-                }
-                wordSpace={"mr-[0.25em]"}
-                charSpace={"mr-[0.01em]"}
-              />
-              <AnimatedBody
-                text={
-                  "Photoshop, Illustrator, InDesign, CorelDRAW, Brand Systems, Typography, Icon and Layout Design, Colour Theory."
-                }
-              />
-            </div>
-            <div className="flex flex-col gap-3">
-              <AnimatedTitle
-                text={"Motion & Web"}
-                className={
-                  "text-[24px] text-[#e4ded7] md:text-[30px] lg:text-[20px]"
-                }
-                wordSpace={"mr-[0.25em]"}
-                charSpace={"mr-[0.01em]"}
-              />
-              <AnimatedBody
-                text={
-                  "Premiere Pro, Movavi, Webflow (basic), HTML/CSS (conceptual)."
-                }
-              />
-            </div>
-            <div className="flex flex-col gap-3">
-              <AnimatedTitle
-                text={"Soft Skills"}
-                className={
-                  "text-[24px] text-[#e4ded7] md:text-[30px] lg:text-[20px]"
-                }
-                wordSpace={"mr-[0.25em]"}
-                charSpace={"mr-[0.01em]"}
-              />
-              <AnimatedBody
-                text={
-                  "Design Thinking, Cross-Functional Collaboration, Agile, Storytelling, Problem-Solving."
-                }
-              />
-            </div>
+          {/* Right side: Skills Pill Badges */}
+          <div className="mb-24 flex w-[100%] flex-col gap-6 text-[18px] font-normal leading-relaxed tracking-wide text-[#e4ded7]/80 sm:mb-32 md:mb-40 md:text-[16px] md:leading-normal lg:mt-0 lg:mb-16 lg:w-[35%] lg:text-[18px]">
+            {skillCategories.map((cat, index) => (
+              <div key={index} className="flex flex-col gap-3">
+                <AnimatedTitle
+                  text={cat.title}
+                  className={"text-[20px] font-bold text-[#e4ded7] md:text-[22px] lg:text-[18px] uppercase tracking-wider"}
+                  wordSpace={"mr-[0.25em]"}
+                  charSpace={"mr-[0.01em]"}
+                />
+                <div className="flex flex-wrap gap-2 mt-1">
+                  {cat.skills.map((skill, sIdx) => (
+                    <span
+                      key={sIdx}
+                      className="rounded-full border border-[#e4ded7]/15 bg-[#e4ded7]/5 px-3 py-1.5 text-[12px] font-medium text-[#e4ded7]/90 transition-all duration-300 hover:border-[#e4ded7]/40 hover:bg-[#e4ded7]/10"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-        <div className="mt-10 flex flex-col md:-mt-0 lg:mt-28">
+        <div className="mt-10 flex flex-col md:-mt-0 lg:mt-28 w-full relative h-[280px] sm:h-[220px] md:h-[240px] lg:h-[280px]">
           <SongCarousel songs={songs} />
           <AnimatedBody
-            text="A few graphic design picks I’d share if you're in the mood for some clean, creative visuals"
-            className="absolute bottom-10 right-0 left-0 mx-auto w-[90%] text-center text-[14px] font-semibold uppercase text-[#e4ded7] sm:w-[500px] md:bottom-12 md:w-[550px] md:text-[16px] "
+            text="Selected Branding & Visual Design Projects"
+            className="absolute bottom-0 right-0 left-0 mx-auto w-[90%] text-center text-[14px] font-semibold uppercase text-[#e4ded7] sm:w-[500px] md:bottom-0 md:w-[550px] md:text-[16px] "
           />
         </div>
       </div>

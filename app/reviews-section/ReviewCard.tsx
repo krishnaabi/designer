@@ -1,14 +1,7 @@
 import { reviewProps } from "./reviewDetails";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import Image from "next/image";
-import Link from "next/link";
-import "../globals.css";
-import profile from "../../public/samuel.avif";
-import slash from "../../public/review-slash.svg";
 import { motion } from "framer-motion";
 
-const BlogCard = ({ name, testimonial, index }: reviewProps) => {
+const ReviewCard = ({ number, label, testimonial, index }: reviewProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -25,23 +18,21 @@ const BlogCard = ({ name, testimonial, index }: reviewProps) => {
         amount: "some",
         once: true,
       }}
-      className="relative flex h-[473px] w-[100%] flex-col items-start justify-between rounded-[23px] border-[3px] border-[#212531] bg-transparent p-[28px] sm:h-[450px] sm:items-center sm:justify-start lg:h-[393px] lg:max-w-[438px] "
+      className="relative flex min-h-[320px] w-[100%] flex-col items-start justify-between rounded-[23px] border-[3px] border-[#212531] bg-[#161922]/30 p-[28px] transition-all duration-300 hover:border-[#e4ded7]/30"
     >
-      <div className="w-[100%]">
-        <Image src={slash} alt={"title"} className="w-[51px]" />
+      <div className="flex flex-col items-start w-full">
+        <span className="text-[56px] font-extrabold text-[#e4ded7] leading-none mb-1 select-none">
+          {number}
+        </span>
+        <h3 className="text-[16px] font-bold uppercase tracking-wider text-[#e4ded7]/70">
+          {label}
+        </h3>
       </div>
-
-      <div className="flex">
-        <div className="flex flex-col gap-1">
-          <h3 className="w-[100%] p-2 text-[18px] font-bold uppercase tracking-[-0.46056px] text-[#e4ded7]">
-            {name}
-          </h3>
-        </div>
-      </div>
-
-      <p className="mt-2 gap-4 text-[18px] font-[500] leading-relaxed tracking-wide text-[#e4ded7]">{testimonial}</p>
+      <p className="mt-6 text-[15px] sm:text-[16px] font-[500] leading-relaxed tracking-wide text-[#e4ded7]/80">
+        {testimonial}
+      </p>
     </motion.div>
   );
 };
 
-export default BlogCard;
+export default ReviewCard;

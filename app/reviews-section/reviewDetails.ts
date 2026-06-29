@@ -1,47 +1,45 @@
-import { StaticImageData } from "next/image";
-import alex from "../../public/samuel.avif";
-import jerry from "../../public/jerry.avif";
-import mauro from "../../public/mauro.jpeg";
-import alan from "../../public/alan.jpeg";
-import olamide from "../../public/olamide.jpeg";
-import umar from "../../public/umar.jpeg";
-
 export type reviewProps = {
-  name: string;
+  number: string;
+  label: string;
   testimonial: string;
   index: number;
 };
 
 export const reviewDetails = [
   {
-    name: "50+ Projects Delivered",
+    number: "50+",
+    label: "Projects Delivered",
     testimonial:
-      "From user-first mobile apps to brand identities and high-conversion websites, each project reflects a tailored solution that balances function and aesthetics.",
+      "Designed branding, websites, dashboards, mobile apps, and digital products across SaaS, B2B, B2C, and eCommerce industries.",
   },
   {
-    name: "80% Client Retention",
+    number: "80%",
+    label: "Client Retention",
     testimonial:
-      "Most of my clients return for additional work a testament to the trust, quality, and collaboration I bring to every engagement.",
+      "Built long-term partnerships by delivering high-quality design solutions and collaborating closely with founders, developers, and product teams.",
   },
   {
-    name: "3.5+ Years Design Experience",
+    number: "4+",
+    label: "Years Experience",
     testimonial:
-      "My journey spans across agencies, startups, and freelance projects blending structure, agility, and creative freedom to solve real design problems.",
+      "Helping startups and growing businesses solve complex problems through research, UX strategy, and interface design.",
   },
   {
-    name: "4 Core Design Disciplines",
+    number: "35+",
+    label: "Research Activities",
     testimonial:
-      "My work spans across Graphic Design, UI/UX Design, No-code Webflow Development, and Brand Identity ensuring cohesive experiences across platforms.",
+      "Conducted user interviews, stakeholder discussions, and usability feedback sessions to understand user needs and improve product decisions.",
   },
   {
-    name: "Clients in 5+ Countries",
+    number: "5+",
+    label: "Countries Served",
     testimonial:
-      "I've had the opportunity to collaborate with brands and founders from India, the UAE, Australia, the U.S., and beyond adapting design sensibilities to global contexts.",
+      "Collaborated with startups and businesses across India, UAE, Australia, the US, and global markets.",
   },
   {
-    name: "10+ Websites & 1 App Launched",
+    number: "10+",
+    label: "Digital Products",
     testimonial:
-      "I’ve taken ideas from sketches to screens building fast, accessible, and responsive websites, plus one complete cross-platform application.",
+      "Designed responsive websites, SaaS dashboards, mobile applications, and scalable design systems from concept to launch.",
   },
-  
 ];
